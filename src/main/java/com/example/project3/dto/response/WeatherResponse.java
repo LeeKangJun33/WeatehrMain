@@ -1,79 +1,69 @@
 package com.example.project3.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.LocalDateTime;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@AllArgsConstructor
 @Getter
 @Setter
 public class WeatherResponse {
 
-    @JsonProperty("response")
-    private Response response;
+    @JsonProperty("temperature")
+    private double temperature;
 
-    // 현재 날짜 및 시간
-    private String currentBaseDate;
-    private String currentBaseTime;
+    @JsonProperty("weather_description")
+    private String weatherDescription;
 
-    // 예보를 위한 기본 날짜 및 시간
-    private String forecastBaseDate;
-    private String forecastBaseTime;
+    @JsonProperty("forecast_date")
+    private Date forecastDate;
 
+    @JsonProperty("weather_condition")
+    private String weatherCondition;
 
-    // 기타 필요한 필드 추가
+    @JsonProperty("temperature_max")
+    private double temperatureMax;
 
-    public Response getResponse() {
-        return response;
+    @JsonProperty("temperature_min")
+    private double temperatureMin;
+
+    @JsonProperty("humidity")
+    private int humidity;
+
+    @JsonProperty("wind_speed")
+    private double windSpeed;
+
+    @JsonProperty("precipitation")
+    private double precipitation;
+
+    @JsonProperty("weather_img")
+    private String weatherImg;
+
+    @JsonProperty("observation_time")
+    private LocalDateTime observationTime;
+
+    @JsonProperty("location_id")
+    private int locationId;
+
+    @Override
+    public String toString() {
+        return "WeatherResponse{" +
+                "temperature=" + temperature +
+                ", weatherDescription='" + weatherDescription + '\'' +
+                ", forecastDate=" + forecastDate +
+                ", weatherCondition='" + weatherCondition + '\'' +
+                ", temperatureMax=" + temperatureMax +
+                ", temperatureMin=" + temperatureMin +
+                ", humidity=" + humidity +
+                ", windSpeed=" + windSpeed +
+                ", precipitation=" + precipitation +
+                ", weatherImg='" + weatherImg + '\'' +
+                ", observationTime=" + observationTime +
+                ", locationId=" + locationId +
+                '}';
     }
 
-    public void setResponse(Response response) {
-        this.response = response;
-    }
 
-    // 기타 Getter, Setter, toString 등 필요한 메소드 추가
-
-    public static class Response {
-        @JsonProperty("header")
-        private Header header;
-
-        @JsonProperty("body")
-        private Body body;
-
-        // Getter, Setter, toString 등 필요한 메소드 추가
-
-        public static class Header {
-            @JsonProperty("resultCode")
-            private String resultCode;
-
-            // Getter, Setter, toString 등 필요한 메소드 추가
-        }
-
-        public static class Body {
-            @JsonProperty("items")
-            private Items items;
-
-            // Getter, Setter, toString 등 필요한 메소드 추가
-
-            public static class Items {
-                @JsonProperty("item")
-                private Item[] item;
-
-                // Getter, Setter, toString 등 필요한 메소드 추가
-
-                public static class Item {
-                    @JsonProperty("baseDate")
-                    private String baseDate;
-
-                    @JsonProperty("baseTime")
-                    private String baseTime;
-
-                    // 기타 필요한 필드 추가
-
-                    // Getter, Setter, toString 등 필요한 메소드 추가
-                }
-            }
-        }
-    }
 }
